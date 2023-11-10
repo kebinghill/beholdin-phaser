@@ -16,6 +16,9 @@ class MyGame extends Phaser.Scene {
     // SHOP BG IMG
     this.load.image('shop-bg', 'assets/shop-bg.png');
 
+    // MONEY IMG
+    this.load.image('money', 'assets/money.png');
+
     // NEXT WAVE BG IMG
     this.load.image('next-wave-bg', 'assets/next-wave-bg.png');
 
@@ -24,6 +27,17 @@ class MyGame extends Phaser.Scene {
     this.load.image('card-slot-2', 'assets/card-slot-2.png');
     this.load.image('card-slot-3', 'assets/card-slot-3.png');
     this.load.image('card-slot-4', 'assets/card-slot-4.png');
+
+    // POTION IMG
+    this.load.image('potion', 'assets/potion.png');
+
+    // PLAY CARD IMGS
+    this.load.image('treasure-card', 'assets/treasure-card.png');
+    this.load.image('skulls-card', 'assets/skulls-card.png');
+    this.load.image('spikes-card', 'assets/spikes-card.png');
+
+    // BOSS CARD IMG
+    this.load.image('boss-card', 'assets/boss-card.png');
   }
 
   create() {
@@ -35,8 +49,24 @@ class MyGame extends Phaser.Scene {
     // SHOP
     this.add.image(600, 300, 'shop-bg').setScale(0.27, 0.27);
 
+    // MONEY
+    this.add.image(530, 490, 'money').setScale(0.3, 0.3);
+    this.add.image(640, 490, 'money').setScale(0.3, 0.3);
+    this.add.image(750, 490, 'money').setScale(0.3, 0.3);
+
+    this.add.image(425, 515, 'money').setScale(0.175, 0.175);
+
+    this.add.image(975, 540, 'money').setScale(0.5, 0.5);
+
+    // POTION & CARDS
+    this.add.image(400, 555, 'potion').setScale(0.25, 0.25);
+
+    this.add.image(540, 575, 'treasure-card').setScale(0.175, 0.175);
+    this.add.image(650, 575, 'skulls-card').setScale(0.175, 0.175);
+    this.add.image(760, 575, 'spikes-card').setScale(0.175, 0.175);
+
     // NEXT WAVE
-    const nextWaveBg = this.add
+    this.add
       .image(215, 75, 'next-wave-bg')
       .setScale(0.2, 0.2)
       .setRotation(4.75);
@@ -46,6 +76,9 @@ class MyGame extends Phaser.Scene {
     this.add.image(530, 270, 'card-slot-2').setScale(0.27, 0.27);
     this.add.image(680, 270, 'card-slot-3').setScale(0.27, 0.27);
     this.add.image(830, 270, 'card-slot-4').setScale(0.27, 0.27);
+
+    // BOSS CARD
+    this.add.image(1010, 285, 'boss-card').setScale(0.2, 0.2);
 
     // const logo = this.add.image(400, 150, 'logo');
 
