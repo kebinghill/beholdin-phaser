@@ -49,7 +49,27 @@ class MyGame extends Phaser.Scene {
     // SHOP
     this.add.image(600, 300, 'shop-bg').setScale(0.27, 0.27);
 
-    // const shopValues = this.add.text(100, 100, )
+    // POTION VALUE
+    this.add.text(437, 495, 'x1', {
+      fontSize: '20px',
+      fill: '#000',
+    });
+
+    // CARD VALUES
+    this.add.text(550, 470, 'x5', {
+      fontSize: '22px',
+      fill: '#000',
+    });
+
+    this.add.text(660, 470, 'x5', {
+      fontSize: '22px',
+      fill: '#000',
+    });
+
+    this.add.text(770, 470, 'x5', {
+      fontSize: '22px',
+      fill: '#000',
+    });
 
     // MONEY
     this.add.image(530, 490, 'money').setScale(0.3, 0.3);
