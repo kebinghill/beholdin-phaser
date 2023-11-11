@@ -80,18 +80,38 @@ class MyGame extends Phaser.Scene {
 
     this.add.image(975, 540, 'money').setScale(0.5, 0.5);
 
-    const playerMoney = this.add.text(1010, 500, '0', {
+    let playerMoney = this.add.text(1010, 500, '0', {
       fontSize: '45px',
       fill: '#000',
     });
 
     // POTION & CARDS
-    this.add.image(400, 555, 'potion').setScale(0.25, 0.25);
+    let potion = this.add
+      .image(400, 555, 'potion')
+      .setScale(0.25, 0.25)
+      .setInteractive({ useHandCursor: true });
 
-    this.add.image(540, 575, 'treasure-card').setScale(0.175, 0.175);
-    this.add.image(650, 575, 'skulls-card').setScale(0.175, 0.175);
-    this.add.image(760, 575, 'spikes-card').setScale(0.175, 0.175);
+    let treasureCard = this.add
+      .image(540, 575, 'treasure-card')
+      .setScale(0.175, 0.175)
+      .setInteractive({ useHandCursor: true });
 
+    let skullsCard = this.add
+      .image(650, 575, 'skulls-card')
+      .setScale(0.175, 0.175)
+      .setInteractive({ useHandCursor: true });
+
+    let spikesCard = this.add
+      .image(760, 575, 'spikes-card')
+      .setScale(0.175, 0.175)
+      .setInteractive({ useHandCursor: true });
+
+    this.input.setDraggable([potion, treasureCard, skullsCard, spikesCard]);
+
+    this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+      gameObject.x = dragX;
+      gameObject.y = dragY;
+    });
     // NEXT WAVE
     this.add
       .image(215, 75, 'next-wave-bg')
@@ -106,6 +126,12 @@ class MyGame extends Phaser.Scene {
 
     // BOSS CARD
     this.add.image(1010, 285, 'boss-card').setScale(0.2, 0.2);
+
+    // BOSS HEALTH
+    this.add.text(950, 135, '10/10 HP', {
+      fontSize: '28px',
+      fill: '#000',
+    });
 
     // const logo = this.add.image(400, 150, 'logo');
 
