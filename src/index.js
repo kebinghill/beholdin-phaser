@@ -49,6 +49,8 @@ class MyGame extends Phaser.Scene {
     // SHOP
     this.add.image(600, 300, 'shop-bg').setScale(0.27, 0.27);
 
+    // const shopValues = this.add.text(100, 100, )
+
     // MONEY
     this.add.image(530, 490, 'money').setScale(0.3, 0.3);
     this.add.image(640, 490, 'money').setScale(0.3, 0.3);
@@ -57,6 +59,11 @@ class MyGame extends Phaser.Scene {
     this.add.image(425, 515, 'money').setScale(0.175, 0.175);
 
     this.add.image(975, 540, 'money').setScale(0.5, 0.5);
+
+    const playerMoney = this.add.text(1010, 500, '0', {
+      fontSize: '45px',
+      fill: '#000',
+    });
 
     // POTION & CARDS
     this.add.image(400, 555, 'potion').setScale(0.25, 0.25);
