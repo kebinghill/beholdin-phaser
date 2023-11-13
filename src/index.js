@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import logoImg from './assets/logo.png';
 import CountDownController from './CountdownController';
 
 class MyGame extends Phaser.Scene {
@@ -11,9 +10,6 @@ class MyGame extends Phaser.Scene {
   }
 
   preload() {
-    //  This is an example of a bundled image:
-    // this.load.image('logo', logoImg);
-
     // BACKGROUND IMG
     this.load.image('background', 'assets/ingame-bg.png');
 
