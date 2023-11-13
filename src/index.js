@@ -1,7 +1,11 @@
 import Phaser from 'phaser';
 import logoImg from './assets/logo.png';
+import CountDownController from './CountdownController';
 
 class MyGame extends Phaser.Scene {
+  /** @type {CountDownController} */
+  countdown;
+
   constructor() {
     super();
   }
@@ -48,6 +52,20 @@ class MyGame extends Phaser.Scene {
 
     // SHOP
     this.add.image(600, 300, 'shop-bg').setScale(0.27, 0.27);
+
+    // CARD SLOTS
+    this.add.image(380, 270, 'card-slot-1').setScale(0.27, 0.27);
+    this.add.image(530, 270, 'card-slot-2').setScale(0.27, 0.27);
+    this.add.image(680, 270, 'card-slot-3').setScale(0.27, 0.27);
+    this.add.image(830, 270, 'card-slot-4').setScale(0.27, 0.27);
+
+    // TIMER
+    const timerLabel = this.add
+      .text(1010, 75, '45', { fontSize: 48 })
+      .setOrigin(0.5);
+
+    this.countdown = new CountDownController(this, timerLabel);
+    this.countdown.start(this.handleCountdownFinished.bind(this), 30000);
 
     // POTION VALUE
     this.add.text(437, 495, 'x1', {
@@ -118,12 +136,6 @@ class MyGame extends Phaser.Scene {
       .setScale(0.2, 0.2)
       .setRotation(4.75);
 
-    // CARD SLOTS
-    this.add.image(380, 270, 'card-slot-1').setScale(0.27, 0.27);
-    this.add.image(530, 270, 'card-slot-2').setScale(0.27, 0.27);
-    this.add.image(680, 270, 'card-slot-3').setScale(0.27, 0.27);
-    this.add.image(830, 270, 'card-slot-4').setScale(0.27, 0.27);
-
     // BOSS CARD
     this.add.image(1010, 285, 'boss-card').setScale(0.2, 0.2);
 
@@ -143,6 +155,12 @@ class MyGame extends Phaser.Scene {
     //   yoyo: true,
     //   loop: -1,
     // });
+  }
+
+  handleCountdownFinished() {}
+
+  update() {
+    this.countdown.update();
   }
 }
 
