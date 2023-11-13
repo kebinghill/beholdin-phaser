@@ -54,10 +54,27 @@ class MyGame extends Phaser.Scene {
     this.add.image(600, 300, 'shop-bg').setScale(0.27, 0.27);
 
     // CARD SLOTS
-    this.add.image(380, 270, 'card-slot-1').setScale(0.27, 0.27);
-    this.add.image(530, 270, 'card-slot-2').setScale(0.27, 0.27);
-    this.add.image(680, 270, 'card-slot-3').setScale(0.27, 0.27);
-    this.add.image(830, 270, 'card-slot-4').setScale(0.27, 0.27);
+    let cardSlots = this.physics.add.staticGroup();
+
+    const slot1 = cardSlots
+      .create(380, 270, 'card-slot-1')
+      .setSize(125, 175)
+      .setScale(0.27, 0.27);
+
+    const slot2 = cardSlots
+      .create(530, 270, 'card-slot-2')
+      .setSize(125, 175)
+      .setScale(0.27, 0.27);
+
+    const slot3 = cardSlots
+      .create(680, 270, 'card-slot-3')
+      .setSize(125, 175)
+      .setScale(0.27, 0.27);
+
+    const slot4 = cardSlots
+      .create(830, 270, 'card-slot-4')
+      .setSize(125, 175)
+      .setScale(0.27, 0.27);
 
     // TIMER
     const timerLabel = this.add
@@ -104,23 +121,28 @@ class MyGame extends Phaser.Scene {
     });
 
     // POTION & CARDS
-    let potion = this.add
-      .image(400, 555, 'potion')
+
+    let potion = this.physics.add
+      .sprite(400, 555, 'potion')
+      .setSize(225, 250)
       .setScale(0.25, 0.25)
       .setInteractive({ useHandCursor: true });
 
-    let treasureCard = this.add
-      .image(540, 575, 'treasure-card')
+    let treasureCard = this.physics.add
+      .sprite(540, 575, 'treasure-card')
+      .setSize(475, 700)
       .setScale(0.175, 0.175)
       .setInteractive({ useHandCursor: true });
 
-    let skullsCard = this.add
-      .image(650, 575, 'skulls-card')
+    let skullsCard = this.physics.add
+      .sprite(650, 575, 'skulls-card')
+      .setSize(475, 700)
       .setScale(0.175, 0.175)
       .setInteractive({ useHandCursor: true });
 
-    let spikesCard = this.add
-      .image(760, 575, 'spikes-card')
+    let spikesCard = this.physics.add
+      .sprite(760, 575, 'spikes-card')
+      .setSize(475, 700)
       .setScale(0.175, 0.175)
       .setInteractive({ useHandCursor: true });
 
@@ -145,19 +167,21 @@ class MyGame extends Phaser.Scene {
       fill: '#000',
     });
 
-    // const logo = this.add.image(400, 150, 'logo');
-
-    // this.tweens.add({
-    //   targets: logo,
-    //   y: 450,
-    //   duration: 2000,
-    //   ease: 'Power2',
-    //   yoyo: true,
-    //   loop: -1,
-    // });
+    this.physics.add.collider(
+      cardSlots,
+      [treasureCard, skullsCard, spikesCard],
+      this.handleOnCardDragged,
+      null,
+      this
+    );
   }
 
   handleCountdownFinished() {}
+
+  handleOnCardDragged(cardSlots, playerCard) {
+    const cardSlot = cardSlots.texture.key;
+    const cardName = playerCard.texture.key;
+  }
 
   update() {
     this.countdown.update();
@@ -172,6 +196,12 @@ const config = {
     autoCenter: Phaser.Scale.CENTER_BOTH,
     width: 1200,
     height: 600,
+  },
+  physics: {
+    default: 'arcade',
+    arcade: {
+      debug: true,
+    },
   },
   scene: MyGame,
 };
